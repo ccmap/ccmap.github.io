@@ -1,0 +1,226 @@
+html,
+body,
+#app-root,
+.full,
+.mapContainer,
+.map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+.appbar-stretch {
+  text-align: center;
+  flex: 1;
+}
+
+.drawer-content {
+  width: 284px;
+}
+
+.fab-bottomright {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1010;
+}
+
+.basemap-selector-current h3 {
+  font-weight: bold;
+}
+
+.leaflet-container {
+  background: none;
+}
+.leaflet-tile, .leaflet-image-layer {
+  image-rendering: pixelated !important;
+  image-rendering: crisp-edges !important;
+  image-rendering: -moz-crisp-edges !important;
+}
+
+.leafmap-coords {
+  z-index: 401;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: .5em 1em;
+  font-size: 12px;
+  color: black;
+  background-color: white;
+  box-shadow: 0px 0px 4px -1px #00000070;
+}
+
+.leaflabel {
+  pointer-events: none !important;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1em;
+  font-weight: bold;
+  color: white;
+  text-shadow: black 0px 0px 5px;
+}
+
+.leafmarker-circleicon {
+  pointer-events: none !important;
+}
+
+.leafmarker-circleicon-circle {
+  pointer-events: all !important;
+  border-radius: 9999px;
+  box-sizing: border-box;
+}
+
+.feature-props-image {
+  height: 200px; /* ~ 360 / (16/9) */
+  background-color: #e0e0e0;
+  /* background-image gets set through javascript */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.feature-props-title {
+  margin: .5em 16px;
+}
+.feature-props-list {
+  list-style: none;
+  padding-left: 0;
+}
+.feature-props-entry {
+  margin: .5em 16px;
+  word-wrap: break-word;
+}
+.feature-props-key {
+  font-weight: bold;
+}
+.feature-props-value {
+}
+
+.mainlist,
+.appbar {
+  z-index: 1000;
+  box-shadow:
+    0px 0px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+/***** app layout *****/
+
+.appbar {
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+/* .appbar > button {
+  border-radius: 100%;
+} */
+
+/* .appbar > button:hover {
+  background-color: #cccccc;
+} */
+
+.container {
+  display: grid;
+  height: 100%;
+}
+
+.mainlist {
+  grid-area: mainlist;
+  overflow-y: auto;
+  margin-top: 48px;
+}
+
+.mapContainer {
+  grid-area: map;
+}
+
+.full-map .mainlist,
+.full-list .mapContainer {
+  display: none;
+}
+
+/* mobile */
+.container.split {
+  grid-template:
+      "mainlist" 1fr
+      "map" 1fr;
+}
+.container.full-map {
+  grid-template:
+      "map" 1fr;
+}
+.container.full-list {
+  grid-template:
+      "mainlist" 1fr;
+}
+
+/* landscape on medium-size devices */
+@media all and (orientation: landscape) and (min-width: 600px) and (max-width: 719px) {
+  .container.split {
+      grid-template: "mainlist map"
+      / 284px auto;
+  }
+  .container.full-map {
+      grid-template: "map";
+  }
+  .container.full-list {
+      grid-template: "mainlist";
+  }
+
+  .appbar {
+    max-width: 284px;
+    width: auto;
+  }
+}
+
+/* large devices */
+@media all and (min-width: 720px) {
+  .container.split {
+      grid-template: "mainlist map"
+      / 360px auto;
+  }
+
+  .appbar {
+    max-width: 360px;
+    width: auto;
+  }
+}
+
+/***** appbar *****/
+
+.appbar {
+  height: 48px; /* resizing is done through padding alone */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 1001;
+}
+
+/* portrait under 600px height */
+.appbar {
+  padding: 4px;
+}
+
+/* landscape on small/medium devices */
+@media all and (orientation: landscape) and (max-height: 599px) {
+  .appbar {
+    padding: 0px;
+  }
+}
+
+/* large devices, or medium on portrait */
+@media all and (min-height: 600px) {
+  .appbar {
+    padding: 8px;
+  }
+}
