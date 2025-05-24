@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>CivClassic Pearls Plot</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const dataRaw = `
+BEHA,-5000,1,1400
+BIDENSNIFF,-1076,1,-3421
+009obm,-810,240,-1423
+luke34525,-810,240,-1423
+Slecksy,-8313,1,3144
+Hills4Real,-4472,1,7032
+WorldPolice_,-4472,1,7032
+MuffinRammer,-8313,1,3144
+ThePresident2040,-810,240,-1423
+EJRawk99,-1076,1,-3421
+familyguyisepic,4646,243,-3989
+PatAPizza56,12993,2,-1
+HollowHex,291,2,-1108
+UnfriendlyDan,291,2,-1108
+Synthectic,291,2,-1108
+ggggrrr,291,2,-1108
+tgrafham,4646,243,-3989
+Shaqattack118,-802,1,-1424
+zRoyalty,-802,1,-1424
+SkrrtCobain,-802,1,-1424
+j8m,-802,1,-1424
+BrassyIA,-802,1,-1424
+Trans_phobic,-802,1,-1424
+Mybrosareweird,-800,1,-1424
+MrJerk500,-810,240,-1423
+Bruh_Klaus22,-1076,1,-3421
+kelchjr,-1505,4,-2832
+Delashmit,-1505,4,-2832
+EduardIsTyping,-802,1,-1424
+Dayders,12993,2,-1
+DarkFreddy1001,-800,1,-1424
+Goragh,291,2,-1108
+0samaBidLaden69,-2496,2,-8672
+Kicky_,-2496,2,-8672
+thomasvdbunt,-802,1,-1424
+tsuki_bird,-2496,2,-8672
+sam070_,-2496,2,-8672
+McBreadston,-2496,2,-8672
+ivandaka,-2496,2,-8672
+Bjorn_Ironwellyn,291,2,-1108
+Strafy,-4455,1,-3034
+suspiciousFish7,-800,1,-1424
+Foddey,-800,1,-1424
+sinpan,-800,1,-1424
+WalterIsBalling,-800,1,-1424
+Setarios,291,2,-1108
+zaphod100,-3002,1,11399
+Redryder120,-800,1,-1424
+Danirague,-2496,2,-8672
+Koko___,-2496,2,-8672
+baasterdino,291,2,-1108
+MANZA,-800,1,-1424
+FO0KING_KENT,-800,1,-1424
+CeleryIceBear,-800,1,-1424
+FatAlbert7o,-800,1,-1424
+KiwiGamer,-2496,2,-8672
+pulp_chicken,-800,1,-1424
+LordAvisa,-800,1,-1424
+natiedacrazie,-1076,1,-3421
+reytoad,-800,1,-1424
+Yqhya,-800,1,-1424
+JustIan12,-2496,2,-8672
+Durbz_,-800,1,-1424
+Mqltz,4646,243,-3989
+thebossar,4646,243,-3989
+Estebalun,4646,243,-3989
+Gimli016,4646,243,-3989
+BallisticPota8,291,2,-1108
+Time4nothing,-800,1,-1424
+mTfUJi,-800,1,-1424
+skyny22,-800,1,-1424
+Baes200,-4455,1,-3034
+Cute_Femboys,-800,1,-1424
+ChelseaBean3,291,2,-1108
+HiImPosey,12997,242,0
+San2884,-1696,11,-2290
+HsingTein,-4455,1,-3034
+Aeternatus,4646,243,-3989
+Ronald_Raiding,-4456,1,-3033
+Dollaz,-4455,1,-3034
+PidoVapes,-4456,1,-3033
+elfguy9,-4455,1,-3034
+DarkyDu,-4455,1,-3034
+Bob_the_BuiIder,-4455,1,-3034
+ashnwill,-4455,1,-3034
+SirCrowley,-2496,2,-8672
+jlhelm65,-4455,1,-3034
+Chuunkyz,-4455,1,-3034
+Not_Thanadon,-2496,2,-8672
+fadedsoul,-4455,1,-3034
+DRAG_BLUE2,-4455,1,-3034
+Rotanigok,-4456,1,-3033
+18nfigueredo,-4456,1,-3033
+GangMusic,-4456,1,-3033
+ASKI500,-4456,1,-3033
+Rynyth,-4456,1,-3033
+Pwigie,-4455,1,-3034
+_Modest,-4456,1,-3033
+poorsreggin,-4456,1,-3033
+SlopeDude,-4456,1,-3033
+alex_cristal,-4456,1,-3033
+TommySalads,-4456,1,-3033
+BaronWaqa,-4456,1,-3033
+chipswithchops,-4456,1,-3033
+Prof_TANSTAAFL,-4456,1,-3033
+IsraeliSpy,-4456,1,-3033
+B_Rain_,-4456,1,-3033
+TheRightAngIe,-4456,1,-3033
+coltguy97,-4456,1,-3033
+TalvorGames,-4456,1,-3033
+killerdaniel2009,-4456,1,-3033
+NinjaEconomics,-4456,1,-3033
+CapedBaldy,-4456,1,-3033
+TroubleYouTap,-4455,1,-3034
+couchpolster,-4456,1,-3033
+Razzmus,-4456,1,-3033
+Con8125,-4456,1,-3033
+cowurs,-4456,1,-3033
+ManwichDEVOURER,-4456,1,-3033
+Ulexos,-4456,1,-3033
+xXNato12Xx,-4456,1,-3033
+Auristella_,-4456,1,-3033
+Apologist,-4456,1,-3033
+PY_Gamer,-4456,1,-3033
+ComradePolka,-4455,1,-3034
+PrettyCumFace,-4456,1,-3033
+LilBeeper,-4456,1,-3033
+Doctor_Sploosh,-4456,1,-3033
+Mauideb,-4456,1,-3033
+memoomel,-4456,1,-3033
+Ibis1804,-4456,1,-3033
+TheUnTamed,-4456,1,-3033
+jonsathan1,-4456,1,-3033
+SignSeeker,-4456,1,-3033
+MallCop,-4455,1,-3034
+stilbruch,-4456,1,-3033
+1_Ash_ketchum_1,-4456,1,-3033
+k4BOOSE,-4456,1,-3033
+LilPumpIsGod,-4456,1,-3033
+SleepSquidy,291,2,-1108
+TwigBrunch,-2496,2,-8672
+Spicy_McChicken7,4646,243,-3989
+MsPrincessKitty,-800,1,-1424
+DoubleA25,-800,1,-1424
+ConorFlynn12,-800,1,-1424
+RadioactiveSword,291,2,-1108
+Associate12,291,2,-1108
+Shabalooba,-801,1,-1425
+MoonRockClear,-800,1,-1424
+Roose_Bolton,-2496,2,-8672
+BlackManDiggy,-2496,2,-8672
+Maximus_Ant,291,2,-1108
+SadButDrew,1135,2,9272
+readsalot,-801,1,-1425
+masterkdt,1452,73,6530
+Taurusrex,291,2,-1108
+Pt01emy,-801,1,-1425
+GoldenLite19,4646,243,-3989
+Neko_Hearts,4645,242,-3989
+Kali_Muscle_,12997,242,0
+pearlman777,291,2,-1108
+viktornirvana,-801,1,-1425
+Cqrolina,-801,1,-1425
+KuroyoshiJuice,-4472,1,7032
+HuM4nB31nG,12993,2,-1
+ahoynickrad,-4472,1,7032
+VoreBot,4646,2,-3992
+cloudisloud,4646,2,-3992
+OPNerf,-801,1,-1425
+FireStone222,-800,1,-1424
+ccmucks,-801,1,-1425
+500miles,-4472,1,7032
+BonHat,12999,1,0
+the_minger,8894,1,488
+notdeathgiver23,8894,1,488
+keiikko_,-2496,2,-8672
+Tonjuax_n_Kongu,-2496,2,-8672
+Robokaiser,12997,242,0
+ToTravelTheWorld,-801,1,-1425
+DanPlayzV3,-2496,2,-8672
+maxxi_lovers,-801,1,-1425
+rita_lee,-801,1,-1425
+man_page,4646,243,-3989
+Slaybelle,4646,243,-3989
+pfalck,-801,1,-1425
+Hotrod8908,-801,1,-1425
+1machinemaker1,12997,242,0
+Xbutterhack69,-801,1,-1425
+Official_MP4,-2496,2,-8672
+Lockman47,12999,1,0
+clamguy1127,-4472,1,7032
+smitson,-4472,1,7032
+Beijeon,-801,1,-1425
+Aaron1019,-2496,2,-8672
+Deucecanady,12997,242,0
+geedough,-801,1,-1425
+cappinbear,-801,1,-1425
+Jingus510,-3002,1,11400
+Judges31623,-4472,1,7032
+og0105,-4472,1,7032
+Lauriam,-3002,1,11399
+lichess,-801,1,-1425
+ICEBORNArviu,-801,1,-1425
+_Garman_,-801,1,-1425
+rubiks_penguin,-5705,1,2311
+_oWhiteWolfo,-801,1,-1425
+Mr_Teddiursa_K,-5705,1,2311
+HumanoidPumpkin,-5705,1,2311
+julieistdiebeste,-2496,2,-8672
+Tasty_Soda,-801,1,-1425
+TheNDN,-3002,1,11399
+LordEmberscar,-3002,1,11399
+SRedwing75,12997,242,0
+WorldPoliceAlt,-3002,1,11399
+Caesar58,-3002,1,11399
+GiveMeNoods,-3002,1,11399
+hippomateo1336,-3002,1,11399
+RhoLex_,-3002,1,11399
+ComradeKdeeks,-2496,2,-8672
+VaultBuster,-2496,2,-8672
+jfkvius,-2496,2,-8672
+CsCoreLib,-2496,2,-8672
+ISLANDBNQ,-801,1,-1425
+Craftnado,-801,1,-1425
+xXFrostLineXx,-801,1,-1425
+FBIAT,3418,144,11516
+ApartmentOwner,-801,1,-1425
+GamePhobic,-3002,1,11399
+Samiscool5673,12997,242,0
+ubilliam,4646,243,-3989
+Littlejewboy,-3002,1,11399
+DawnedT,-7317,12,-5608
+Sali_Bean,4646,243,-3989
+GGJoe,-3002,1,11399
+slayer340,-7317,12,-5608
+Owen_,-7317,12,-5608
+Agentburkin,-3002,1,11399
+RagingFeminist_,-3002,1,11399
+Vapin,-3002,1,11399
+Lechh,-3002,1,11399
+Tofee_Dodger,-3002,1,11399
+Gilfs,-3000,1,11399
+n8craftermaster,2366,1,4110
+KeiMcmastrer,4646,243,-3989
+OfficialDrPhil,4646,243,-3989
+Thoths_Librarian,12997,242,0
+zellt5,4646,243,-3989
+arnau2415,-801,1,-1425
+maladroitmeta4,4646,243,-3989
+DunchLunch,-801,1,-1425
+Dr_Vore,4646,2,-3992
+Machina_Mortem,12997,242,0
+g9v,4646,2,-3992
+DrunkAoki,-445,1,5790
+BuddhistMonk_,-445,1,5790
+comfyduck,-445,1,5790
+ZachyF,-5705,1,2311
+Elliot2810,4646,2,-3992
+Watikita,-5705,1,2311
+Stalker2B,-5705,1,2311
+cltn115,-5705,1,2311
+Sarcgasm,-3002,1,11399
+Deathie_Kun,-4472,1,7032
+ShanJams,12999,1,0
+brandonisgood,-5705,1,2311
+iBlazys,4646,2,-3992
+Maxpowerboy,-3002,1,11399
+aj341,12999,1,0
+Jacobwr7,4646,243,-3989
+Xmc_meme_smurfX,4646,2,-3992
+Despacito_Daddy,-3002,1,11399
+tueman,4646,2,-3992
+orionw2000,4646,2,-3992
+FalscherRVN,-3002,1,11399
+CopperWolf7,12999,1,0
+Discriminants,-3002,1,11399
+Slayer1145,4646,2,-3992
+Renrits1,12997,242,0
+lordwe,12997,242,0
+King_Wyatt,-3000,1,11399
+cokeandmentos,-4472,1,7032
+Tacilus,4646,2,-3992
+bronzu55,4646,2,-3992
+BasedNigelFarage,4646,2,-3992
+daddo69,12997,242,0
+BrunoTheMiner,12997,242,0
+Aimuari,12997,242,0
+DontMindMe,12997,242,0
+Godclick,12997,242,0
+japanese_cars,-5705,1,2311
+armodillon,-2496,2,-8672
+craftilogical20,12999,1,0
+centipede777,12997,242,0
+Hangoverd,12997,242,0
+Vexil1,12999,1,0
+Paramecium69,12999,1,0
+Algero,-3001,1,11401
+TheUdderButter,-5705,1,2311
+CoyoteClanGaming,6696,1,-3192
+22asparagus,6696,1,-3192
+Rayrwht,12999,1,0
+PelonG64,-5705,1,2311
+Nikolka,-3001,1,11401
+Drachenstien,-3001,1,11401
+orionrhodes,-9197,251,9187
+DishwashPro,-3002,1,11400
+whosnick,4646,2,-3992
+LuckyKreuks,-3001,1,11401
+Mambao0,-5705,1,2311
+Capri,-3000,1,11399
+CoolBredCrash,-3001,1,11401
+_HiTeck11_,-3001,1,11401
+Knights_105,12999,1,0
+5px,-3002,1,11401
+adobogrizz,-5705,1,2311
+chaoslord510,-5705,1,2311
+Rhin0x,-3001,1,11401
+Stelith,-5705,1,2311
+GMag1c,-3001,1,11401
+fluberfish9,-1190,1,-6667
+alpha8191,-1190,1,-6667
+ThomasBenfield,-1190,1,-6667
+SamuraY_DF,-1190,1,-6667
+SkullCrusher4S,-1190,1,-6667
+Raidergus72,-1190,1,-6667
+Thur,-1190,1,-6667
+Gye,-1190,1,-6667
+johnsama,-3002,1,11399
+UHCUnleashed,-3000,1,11399
+2Edgy4Girls,-3000,1,11399
+daltons25,-3002,1,11399
+ebony,-3002,1,11399
+TABOU00,12999,1,0
+Dutchquality,-5705,1,2311
+brutando,-3001,1,11401
+CNProx,-4472,1,7032
+silverhuntress11,-3001,1,11401
+ZacharyPaul07,-3001,1,11401
+ZoruaTheShinyFox,-5705,1,2311
+Jesspacito,-3002,1,11400
+SoapBucket,-3002,1,11400
+DARTHKID,-3000,1,11399
+TonKae,-5705,1,2311
+gdslayer,-4472,1,7032
+Konsaro,-3002,1,11400
+Dovachuck,-4472,1,7032
+Papa,-3000,1,11399
+Arvein,-3002,1,11400
+Evilloker,-3002,1,11401
+Frenchfrys,-3000,1,11399
+anarchofascist,-3000,1,11399
+Augusta,-3000,1,11399
+VitaCoco,-3000,1,11399
+Silent_Logic,12999,1,0
+Kazeprrr,12999,1,0
+Ackpth,12999,1,0
+Cooley106,12999,1,0
+Fionn_Cumhaill,12999,1,0
+Katido,12999,1,0
+cwage,12999,1,0
+BluAutoClicksNTY,-4472,1,7032
+Captain_Cuckold,-3000,1,11399
+EvilGamerDad,-1000,248,-12957
+Bubbalubbagus,-3000,1,11401
+Kipse,-3002,1,11400
+gold123321,-3001,1,11401
+ScrewCoal,-3001,1,11401
+key_ooh,-3001,1,11401
+senorlocostacos,-3000,1,11399
+Brigand,-3002,1,11400
+Thyrael249,-3001,1,11401
+xMario25x,-3001,1,11401
+CactusCuzza,-3001,1,11401
+Dizzaster1,950,55,-12684
+Swaggy_,-3001,1,11401
+iamSamBlackmore,-3001,1,11401
+letly,-3001,1,11401
+goldmine9079,-3001,1,11401
+The_BadAsh,-3000,1,11399
+Vah,-3000,1,11399
+Shadowed_s0ul,-3002,1,11400
+XuanCabritu,-3000,1,11399
+xXScreamerxXx,-3000,1,11399
+Saren_Solaris,4646,2,-3992
+aSsBlAsT3R6969,-3000,1,11399
+Me_never,-3001,1,11401
+flemington,-3001,1,11401
+Laskoh,-3002,1,11399
+Foofa,-3002,1,11401
+GiverofLs,-3000,1,11401
+Broccoli_Cheddar,-3001,1,11401
+InsaneDrummer,-3001,1,11401
+dskull123,-3001,1,11401
+ElMasterCaos,-3001,1,11401
+widd_,-3001,1,11401
+Tenacious_B,-3001,1,11401
+Dio_B,-3001,1,11401
+`;
+
+  const data = dataRaw
+    .trim()
+    .split("\n")
+    .map((r) => r.split(","))
+    .map(([name, x, y, z]) => ({ name, x: +x, y: +y, z: +z }));
+
+  function main() {
+    const widthInner = 13000 / 20;
+    const heightInner = 13000 / 20;
+    const widthOuter = 50 + widthInner + 50;
+    const heightOuter = 50 + heightInner + 50;
+
+    const radius = 2;
+
+    const numTicks = (13000 * 2) / 2000;
+
+    const svg = d3
+      .select("body")
+      .append("svg")
+      .attr("width", widthOuter)
+      .attr("height", heightOuter);
+
+    const xScale = d3
+      .scaleLinear()
+      .domain([-13000, 13000])
+      .range([50, widthOuter - 50]);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([-13000, 13000])
+      .range([50, heightOuter - 50]);
+
+    const xAxis = d3.axisBottom().scale(xScale).ticks(numTicks);
+
+    const yAxis = d3.axisLeft().scale(yScale).ticks(numTicks);
+
+    svg
+      .append("image")
+      .attr("class", "grid-vertical")
+      .attr("x", 50 - 3)
+      .attr("y", 50 - 3)
+      .attr("width", widthInner + 3 * 2)
+      .attr("height", heightInner + 3 * 2)
+      .attr(
+        "href",
+        "https://cdn.discordapp.com/attachments/808509877898313749/830566034389467245/civclassic_terrain_with_claims_2021-04-10.jpg"
+      )
+      .style("opacity", 0.5);
+    // .style("filter", "url(#grayscale)")
+
+    svg
+      .append("g")
+      .attr("class", "grid-vertical")
+      .selectAll("line.verticalGrid")
+      .data(xScale.ticks(numTicks))
+      .enter()
+      .append("line")
+      .attr("class", "verticalGrid")
+      .attr("y1", 50)
+      .attr("y2", 50 + heightInner)
+      .attr("x1", (d) => xScale(d))
+      .attr("x2", (d) => xScale(d))
+      .attr("fill", "none")
+      .attr("stroke", "gray")
+      .attr("stroke-width", "1px")
+      .attr("shape-rendering", "crispEdges");
+
+    svg
+      .append("g")
+      .attr("class", "grid-horizontal")
+      .selectAll("line.horizontalGrid")
+      .data(yScale.ticks(numTicks))
+      .enter()
+      .append("line")
+      .attr("class", "horizontalGrid")
+      .attr("x1", 50)
+      .attr("x2", 50 + widthInner)
+      .attr("y1", (d) => yScale(d))
+      .attr("y2", (d) => yScale(d))
+      .attr("fill", "none")
+      .attr("stroke", "gray")
+      .attr("stroke-width", "1px")
+      .attr("shape-rendering", "crispEdges");
+
+    svg
+      .append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + (50 + heightInner) + ")")
+      .call(xAxis);
+
+    svg
+      .append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(50,0)")
+      .call(yAxis);
+
+    svg
+      .append("g")
+      .attr("class", "g-data")
+      .selectAll(".circ")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("class", "circ")
+      .attr("stroke", null)
+      .attr("fill", "red")
+      .attr("r", radius)
+      .attr("cx", (d) => xScale(d.x))
+      .attr("cy", (d) => xScale(d.z))
+      .append("title")
+      .text((d) => d.name);
+
+    const simulation = d3
+      .forceSimulation(data)
+      .force(
+        "x",
+        d3
+          .forceX((d) => {
+            return xScale(d.x);
+          })
+          .strength(1)
+      )
+      .force(
+        "y",
+        d3
+          .forceY(function (d) {
+            return yScale(d.z);
+          })
+          .strength(1)
+      )
+      .force("collide", d3.forceCollide(radius))
+      .alphaDecay(0)
+      .alpha(0.3)
+      .on("tick", tick);
+
+    function tick() {
+      d3.selectAll(".circ")
+        .attr("cx", (d) => d.x)
+        .attr("cy", (d) => d.y);
+    }
+
+    console.log("before decay");
+    const init_decay = setTimeout(function () {
+      console.log("starting decay");
+      simulation.alphaDecay(0.1);
+    }, 3000);
+  }
+  main();
+</script>
